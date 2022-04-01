@@ -13,21 +13,25 @@
         latitude: <span id="latitude"></span>&deg;<br />
         longitude: <span id="longitude"></span>&deg;
         </p>
-        <button id="geolocate">Find my GPS coordinates</button>
+        <button id="geolocate">Where am I?</button>
+        <form action="">
+            <label for="uname">Username:</label><br>
+            <input type="text" id="uname" name="uname" placeholder="username"><br>
+            <label for="locname">Your fave spot:</label><br>
+        </form>
+
 
     <script>
          document.getElementById('geolocate').addEventListener('click', event => {
             //Use Navigator Interface to pull in user location
         if('geolocation' in navigator) {
-            console.log('geolocation available');
             navigator.geolocation.getCurrentPosition(async position => { 
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                // console.log(lat, lon);
+                
                 document.getElementById('latitude').textContent = lat;
                 document.getElementById('longitude').textContent = lon;
         
-                // console.log(position);
                 const data = { lat, lon };
                 const options = {
                     method: 'POST',
