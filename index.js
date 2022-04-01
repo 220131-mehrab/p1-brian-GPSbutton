@@ -16,17 +16,17 @@ database.loadDatabase();
 
 
 app.post('/api', (request, response) => {
-    console.log('I got a request');
+    console.log(request.body);
     const data = request.body;
     const timestamp = Date.now();
     data.timestamp = timestamp;
     database.insert(data);
     response.json({
         status: 'success',
-        //adds timestamp to JSON object
-        timestamp: timestamp,
         latitude: data.lat,
-        longitude: data.lon
+        longitude: data.lon,
+        //adds timestamp to JSON object
+        timestamp: timestamp
     });
 });
 
